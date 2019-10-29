@@ -33,14 +33,14 @@ server.post('/api/users', (req, res) => {
           console.log(err);
           res.json({error: "error geting users data"});
         });
-    }
   });
 
 //   | GET    | /api/users     | Returns an array of all the user objects contained in the database.  
 
 server.get('/api/users', (req, res) => {
   db.find()
-    .then(users => res.status(200).json(users))
+    .then(users => 
+        res.status(200).json(users))
     .catch(err => {
       console.log(err);
       res.json({error: "error geting users data"});
@@ -54,7 +54,7 @@ server.get('/api/users/:id', (req, res) => {
   const { id } = req.params;
   db.findById(id)
     .then(user => {
-      console.log("user", user);
+        res.status(200).json(user)
     })
     .catch(err => {
       console.log(err);
@@ -68,7 +68,7 @@ server.delete('/api/users/:id', (req, res) => {
   const { id } = req.params;
   db.remove(id)
     .then(deleted => {
-      console.log(deleted);
+        res.status(200).json(deleted)
     })
     .catch(err => {
       console.log(err);
